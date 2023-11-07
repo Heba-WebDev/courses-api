@@ -2,6 +2,9 @@
 
 This project is a RESTful API built with Express.js and Sequelize ORM using MySQL as the database. It provides CRUD operations for a `Course` model.
 
+![Screenshot 2023-11-02 at 1 11 31 AM (2)](https://github.com/Heba-WebDev/courses-api/assets/74996096/d981ddba-8a3a-4f91-964d-a3949a9c1870)
+
+
 ## Features
 
 - CRUD operations for a `Course` model.
