@@ -9,9 +9,10 @@ const verifyToken = (req, res, next) => {
     const error = appError.create("Token is required", 401, FAIL);
     return next(error);
   }
-  const token = authHeder?.split(" ")[1];
+  const token = authHeder;
   try {
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    req.decodedToken = decodedToken;
     next();
   } catch (err) {
     const error = appError.create("Not a valid Token", 401, FAIL);
