@@ -35,7 +35,7 @@ const connectToDatabase = async () => {
   try {
     await sequelize.authenticate();
     courses.sync();
-    users.sync();
+    users.sync({ alter: true });
     console.log("Connection has been established successfully.");
     return true;
   } catch (error) {
