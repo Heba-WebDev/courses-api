@@ -10,6 +10,9 @@ let {
   updateCourse,
   deleteCourse,
 } = require("../controllers/courses.controller");
+const { verifyToken } = require("../middlewares/verifyToken");
+const { ADMIN } = require("../utils/userRoles");
+const { allowTo } = require("../middlewares/allowTo");
 
 /**
  * @swagger
@@ -133,6 +136,6 @@ coursesRouter.route("/:id").put(updateCourse);
  *         description: Course doesn't exist
  */
 
-coursesRouter.route("/:id").delete(deleteCourse);
+coursesRouter.route("/:id").delete(verifyToken, allowTo(ADMIN), deleteCourse);
 
 module.exports = { coursesRouter };
