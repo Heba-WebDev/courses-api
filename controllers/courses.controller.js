@@ -73,6 +73,15 @@ const updateCourse = asyncWrapper(async (req, res, next) => {
     const err = appError.create("Title and/or price are missing", 400, FAIL);
     return next(err);
   }
+  const course = await courses.findOne({
+    where: { course_id: id },
+  });
+
+  if (!course) {
+    const err = appError.create("Course not found.", 404, FAIL);
+    return next(err);
+  }
+
   const { title, price } = req.body;
   courses
     .update(
