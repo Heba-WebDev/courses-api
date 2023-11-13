@@ -1,13 +1,15 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("./db");
+const { USER, ADMIN } = require("../utils/userRoles");
 
 const users = sequelize.define(
   "users",
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
-      autoIncrement: true,
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
@@ -27,6 +29,11 @@ const users = sequelize.define(
       validate: {
         len: [4],
       },
+    },
+    role: {
+      type: DataTypes.ENUM(USER, ADMIN),
+      defaultValue: USER,
+      allowNull: false,
     },
   },
   {
