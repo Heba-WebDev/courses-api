@@ -79,6 +79,7 @@ const signup = asyncWrapper(async (req, res, next) => {
       name: name,
       email: email,
       password: hashedPassword,
+      image: req?.file?.filename,
     })
     .then((result) => {
       return res.status(201).json({
