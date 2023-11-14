@@ -8,6 +8,7 @@ const { sequelize } = require("./data/db");
 const { courses } = require("./data/courses");
 const { users } = require("./data/users");
 const { FAIL, ERROR } = require("./utils/httpStatusCode");
+const path = require("path");
 
 swagger(app);
 require("dotenv").config();
@@ -15,6 +16,7 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/courses", coursesRouter);
 app.use("/api/users", usersRouter);
 
@@ -35,7 +37,7 @@ const connectToDatabase = async () => {
   try {
     await sequelize.authenticate();
     courses.sync();
-    users.sync({ alter: true });
+    users.sync();
     console.log("Connection has been established successfully.");
     return true;
   } catch (error) {
