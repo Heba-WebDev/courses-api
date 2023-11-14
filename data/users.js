@@ -35,6 +35,10 @@ const users = sequelize.define(
       defaultValue: USER,
       allowNull: false,
     },
+    image: {
+      type: DataTypes.STRING,
+      defaultValue: "uploads/default.png",
+    },
   },
   {
     timestamps: false,
